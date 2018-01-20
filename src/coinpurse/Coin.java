@@ -1,9 +1,9 @@
 package coinpurse;
 
 /**
+ * A coin with value and currency.
  * 
  * @author Jiranan Patrathamakul
- *
  */
 
 public class Coin implements Comparable<Coin> {
@@ -12,10 +12,10 @@ public class Coin implements Comparable<Coin> {
 	
 	
 	/**
+	 * A coin with given value and currency.
 	 * 
-	 * 
-	 * @param value
-	 * @param currency
+	 * @param value of the coin.
+	 * @param currency of the coin.
 	 */
 	
 	public Coin (double value, String currency) {
@@ -23,12 +23,30 @@ public class Coin implements Comparable<Coin> {
 		this.value = value;
 
 	}
+	
+	/**
+	 * Return a value of the coins.
+	 * 
+	 * @return value of the coins.
+	 */
+	
 	public double getValue() {
 		return value;
 	}
+	
+	/**
+	 * Return a currency of the coins.
+	 * @return currency of the coins.
+	 */
+	
 	public String getCurrency() {
 		return currency;
 	}
+	
+	/**
+	 * To check the coin if it equals to value and currency or not.
+	 */
+	
 	public boolean equals (Object arg) {
 		if (arg == null) 
 			return false;
@@ -40,6 +58,10 @@ public class Coin implements Comparable<Coin> {
 			return true;
 		return false;
 	}
+	
+	/**
+	 * Compare the values of two coins.
+	 */
 	
 	@Override
 	public int compareTo(Coin o) {
@@ -53,6 +75,12 @@ public class Coin implements Comparable<Coin> {
 			return 0;
 		return -1;
 	}
+	
+	/**
+	 * toString is to describes what's in the purse.
+     * @return description of what's in the purse. 
+	 */
+	
 	@Override
 	public String toString() {
 		return value + "-" + currency;

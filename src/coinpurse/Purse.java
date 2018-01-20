@@ -4,17 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
-//TODO import List, ArrayList, and Collections
-// You will use Collections.sort() to sort the coins
-
 /**
  *  A coin purse contains coins.
  *  You can insert coins, withdraw money, check the balance,
  *  and check if the purse is full.
  *  
- *  @author your name
+ *  @author Jiranan Patrathamakul
  */
 public class Purse {
     /** Collection of objects in the purse. */
@@ -129,10 +124,13 @@ public class Purse {
 		if ( amount != 0 ) {	
 			// failed. Don't change the contents of the purse.
 			for (Coin c: money) {
+				if (c.getValue() <= amount) {
 				templist.add(c);
 				amount -= c.getValue();
+				}
 			}
 		}
+		
 		if (amount == 0 ) {
 			money.removeAll(templist);
 			Coin [] array = new Coin[templist.size()];
@@ -156,10 +154,10 @@ public class Purse {
     		return count() + " coin with vale " + getBalance();
     }
 //    public static void main(String[] args) {
-//    		Purse p = new Purse(3);
+//    		Purse p = new Purse(5);
 //    		System.out.println(p.getBalance());
 //    		System.out.println(p.isFull());
-//    		p.insert(new Coin(5, "Bath"));
+//    		p.insert(new Coin(55, "Bath"));
 //    		p.insert(new Coin(10, "Bath"));
 //    		p.insert(new Coin(0, "Bath"));
 //    		p.insert(new Coin(1, "Bath"));
@@ -169,7 +167,8 @@ public class Purse {
 //    		System.out.println(p.getBalance());
 //    		System.out.println(p.toString());
 //    		System.out.println(p.withdraw(15));
-//    		System.out.println(p.withdraw(11));
+//    		System.out.println(p.withdraw(1));
+//    		System.out.println(p.getBalance());
 //    }
 }
 

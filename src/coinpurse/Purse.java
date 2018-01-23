@@ -114,24 +114,28 @@ public class Purse {
     		List<Coin> templist = new ArrayList<>();
     		Collections.sort(money);
     		Collections.reverse(money);
-    		if (amount < 0)     		
+    		if (amount < 0) {    		
     			return null;
-    	
+    		}
+    		for (Coin c: money) {
+				if (c.getValue() <= amount) {
+				templist.add(c);
+				amount -= c.getValue();
+				}
+		}
 		// Did we get the full amount?
 		// This code assumes you decrease amount each time you remove a coin.
     	// Your code might use some other variable for the remaining amount to withdraw.
 		if ( amount != 0 ) {	
 			// failed. Don't change the contents of the purse.
-			for (Coin c: money) {
-				if (c.getValue() <= amount) {
-				templist.add(c);
-				amount -= c.getValue();
-				}
-			}
+			return null;
 		}
 		
+		
 		if (amount == 0 ) {
-			money.removeAll(templist);
+			for (Coin c : templist) {
+				money.remove(c); 
+			}
 			Coin [] array = new Coin[templist.size()];
 			templist.toArray(array);
 			return array;

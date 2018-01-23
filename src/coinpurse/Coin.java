@@ -45,6 +45,7 @@ public class Coin implements Comparable<Coin> {
 	
 	/**
 	 * To check the coin if it equals to value and currency or not.
+	 * @param arg is an object that we use to check. 
 	 * @return an object that we're using to check.  
 	 */
 	
@@ -62,6 +63,7 @@ public class Coin implements Comparable<Coin> {
 	
 	/**
 	 * Compare the values of two coins.
+	 * @param o is a Coin object to campare the value of the coin.
 	 * @return -1 if the value if value of the coin is less than the other.
 	 * 0 if value of the coin is equal to the other.
 	 * 1 if value of the coin is bigger than the other.

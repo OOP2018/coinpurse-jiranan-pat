@@ -153,22 +153,5 @@ public class Purse {
     public String toString() {
     		return count() + " coin with vale " + getBalance();
     }
-//    public static void main(String[] args) {
-//    		Purse p = new Purse(5);
-//    		System.out.println(p.getBalance());
-//    		System.out.println(p.isFull());
-//    		p.insert(new Coin(55, "Bath"));
-//    		p.insert(new Coin(10, "Bath"));
-//    		p.insert(new Coin(0, "Bath"));
-//    		p.insert(new Coin(1, "Bath"));
-//    		p.insert(new Coin(5, "Bath"));
-//    		System.out.println(p.count());
-//    		System.out.println(p.isFull());
-//    		System.out.println(p.getBalance());
-//    		System.out.println(p.toString());
-//    		System.out.println(p.withdraw(15));
-//    		System.out.println(p.withdraw(1));
-//    		System.out.println(p.getBalance());
-//    }
 }
 

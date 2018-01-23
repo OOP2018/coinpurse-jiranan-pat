@@ -45,6 +45,7 @@ public class Coin implements Comparable<Coin> {
 	
 	/**
 	 * To check the coin if it equals to value and currency or not.
+	 * @return an object that we're using to check.  
 	 */
 	
 	public boolean equals (Object arg) {
@@ -61,6 +62,10 @@ public class Coin implements Comparable<Coin> {
 	
 	/**
 	 * Compare the values of two coins.
+	 * @return -1 if the value if value of the coin is less than the other.
+	 * 0 if value of the coin is equal to the other.
+	 * 1 if value of the coin is bigger than the other.
+	 * 		
 	 */
 	
 	@Override

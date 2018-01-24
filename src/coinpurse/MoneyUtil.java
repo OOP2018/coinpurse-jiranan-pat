@@ -22,7 +22,7 @@ public class MoneyUtil {
 	
 	public static List<Coin> filterByCurrency (List<Coin> coins, String currency) {
 		for (Coin c: coins) {
-			if (c.getCurrency() == currency) 
+			if (c.getCurrency().equals(currency)) 
 				coins.add(c);
 		}
 		return coins;

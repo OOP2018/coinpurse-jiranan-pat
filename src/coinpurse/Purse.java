@@ -66,7 +66,7 @@ public class Purse {
      *  @return true if purse is full.
      */
     public boolean isFull() {
-        return count() >= this.capacity;
+        return money.size() >= this.capacity;
     }
 
     /** 

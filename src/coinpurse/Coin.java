@@ -6,7 +6,7 @@ package coinpurse;
  * @author Jiranan Patrathamakul
  */
 
-public class Coin implements Comparable<Coin> {
+public class Coin implements Valuable {
 	private double value;
 	private String currency;
 	
@@ -45,42 +45,34 @@ public class Coin implements Comparable<Coin> {
 	
 	/**
 	 * To check the coin if it equals to value and currency or not.
-	 * @param arg is an object that we use to check. 
+	 * @param obj is an object that we use to check. 
 	 * @return an object that we're using to check.  
 	 */
 	
-	public boolean equals (Object arg) {
-		if (arg == null) 
+	public boolean equals (Object obj) {
+		if (obj == null) 
 			return false;
-		if (arg.getClass() != this.getClass())
+		if (obj.getClass() != this.getClass())
 			return false;
-		Coin other = (Coin) arg;
-		if (this.currency.equalsIgnoreCase(other.getCurrency()) && 
-				this.value == other.getValue())
+		Coin other = (Coin) obj;
+		if ((this.currency  == other.getCurrency()) && 
+				(this.value == other.getValue()))
 			return true;
 		return false;
 	}
 	
 	/**
 	 * Compare the values of two coins.
-	 * @param o is a Coin object to campare the value of the coin.
-	 * @return -1 if the value if value of the coin is less than the other.
+	 * @param o is a Coin object to compare the value of the coin.
+	 * @return -1 if the value of the coin is less than the other.
 	 * 0 if value of the coin is equal to the other.
 	 * 1 if value of the coin is bigger than the other.
 	 * 		
 	 */
-	
-	@Override
 	public int compareTo(Coin o) {
 		if (o == null)
 			return -1;
-		if (this.value < o.getValue())
-			return -1;
-		if (this.value > o.getValue())
-			return 1;
-		if (this.value == o.getValue())
-			return 0;
-		return -1;
+		return (int) Math.signum(this.value - o.value);
 	}
 	
 	/**

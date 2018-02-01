@@ -2,6 +2,7 @@ package coinpurse;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class Purse {
     /** Collection of objects in the purse. */
-	List<Coin> money;
+	List<Valuable> money;
 	
     /** Capacity is maximum number of items the purse can hold.
      *  Capacity is set when the purse is created and cannot be changed.
@@ -76,14 +77,14 @@ public class Purse {
      * @param coin is a Coin object to insert into purse
      * @return true if coin inserted, false if can't insert
      */
-    public boolean insert( Coin coin ) {
+    public boolean insert( Valuable val ) {
         // if the purse is already full then can't insert anything.
     		if (isFull())
     			return false;
-    		if (coin.getValue() <= 0)
+    		if (val.getValue() <= 0)
     			return false;
  
-    		money.add(coin);
+    		this.money.add(val);
     		return true;
     }
     
@@ -95,7 +96,7 @@ public class Purse {
      *  @return array of Coin objects for money withdrawn, 
 	 *    or null if cannot withdraw requested amount.
      */
-    public Coin[] withdraw( double amount ) {    
+    public Valuable[] withdraw( double amount ) {    
 	   /*
 		* See lab sheet for outline of a solution, 
 		* or devise your own solution.
@@ -111,16 +112,17 @@ public class Purse {
 		* from the money list, and return the temporary
 		* list (as an array).
 		*/
-    		List<Coin> templist = new ArrayList<>();
-    		Collections.sort(money);
+    		List<Valuable> templist = new ArrayList<>();
+    		Comparator<Valuable> comp = new ValueComparator();
+    		Collections.sort(money, comp);
     		Collections.reverse(money);
     		if (amount < 0) {    		
     			return null;
     		}
-    		for (Coin c: money) {
-				if (c.getValue() <= amount) {
-				templist.add(c);
-				amount -= c.getValue();
+    		for (Valuable val: money) {
+				if (val.getValue() <= amount) {
+				templist.add(val);
+				amount -= val.getValue();
 				}
 		}
 		// Did we get the full amount?
@@ -133,10 +135,10 @@ public class Purse {
 		
 		
 		if (amount == 0 ) {
-			for (Coin c : templist) {
-				money.remove(c); 
+			for (Valuable val : templist) {
+				money.remove(val); 
 			}
-			Coin [] array = new Coin[templist.size()];
+			Valuable [] array = new Valuable[templist.size()];
 			templist.toArray(array);
 			return array;
 			
@@ -154,7 +156,7 @@ public class Purse {
      * It can return whatever is a useful description.
      */
     public String toString() {
-    		return count() + " coin with vale " + getBalance();
+    		return count() + " coin with value " + getBalance();
     }
 }
 

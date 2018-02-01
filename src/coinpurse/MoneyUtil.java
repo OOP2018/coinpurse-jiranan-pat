@@ -1,7 +1,9 @@
 package coinpurse;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Comparator;
 
 /**
  * Money Utility which contains filter and sort.
@@ -13,27 +15,33 @@ import java.util.List;
 public class MoneyUtil {
 	
 	/**
-	 * filterByCurrency is to filter the coins if it's the same currency or not.
+	 * filterByCurrency is to filter the money if it's the same currency or not.
 	 * 
-	 * @param coins is list of money in the purse.
+	 * @param money is list of money in the purse.
 	 * @param currency is the currency that was given.
 	 * @return list of money with same currency.
 	 */
 	
-	public static List<Coin> filterByCurrency (List<Coin> coins, String currency) {
-		for (Coin c: coins) {
-			if (c.getCurrency().equals(currency)) 
-				coins.add(c);
+	public static List<Valuable> filterByCurrency (List<Valuable>  money, String currency) {
+		List<Valuable> val = new ArrayList<Valuable>();
+		for (Valuable moneyList: money) {
+			if (moneyList.getCurrency().equals(currency)) 
+				val.add(moneyList);
 		}
-		return coins;
+		return val;
 	}
 	
 	/**
 	 * sortCoins is to sort the coins by its value from max to min.
-	 * @param coins list of money in the purse.
+	 * @param money list of money in the purse.
 	 */
 	
-	public static void sortCoins (List<Coin> coins) {
-		Collections.sort(coins);
-	}	
+	public static void sortCoins (List<Valuable> money) {
+		Collections.sort(money, new Comparator<Valuable>() {
+			@Override
+			public int compare(Valuable a, Valuable b) {
+				return (int) Math.signum(a.getValue() - b.getValue());
+			}
+		});
+	}
 }

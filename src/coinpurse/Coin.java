@@ -55,7 +55,7 @@ public class Coin implements Valuable {
 		if (obj.getClass() != this.getClass())
 			return false;
 		Coin other = (Coin) obj;
-		if ((this.currency  == other.getCurrency()) && 
+		if ((this.currency.equalsIgnoreCase(other.getCurrency())) && 
 				(this.value == other.getValue()))
 			return true;
 		return false;

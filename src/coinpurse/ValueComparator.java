@@ -21,7 +21,7 @@ public class ValueComparator implements Comparator<Valuable> {
 	 * 1 if currency of the a is come after the other.
 	 */
 	public int compare(Valuable a, Valuable b) {
-		return (int) Math.signum(a.getValue() - b.getValue());
+		return a.getCurrency().compareTo(b.getCurrency());
 	}
 
 }

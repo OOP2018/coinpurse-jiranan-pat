@@ -7,7 +7,7 @@ package coinpurse;
  */
 
 public class BankNote implements Valuable {
-	private long serialNumber;
+	private long serial;
 	private double value;
 	private String currency;
 	private static long nextSerialNumber = 1000000;
@@ -21,7 +21,7 @@ public class BankNote implements Valuable {
 	public BankNote (double value, String currency) {
 		this.value = value;
 		this.currency = currency;
-		this.serialNumber = nextSerialNumber;
+		this.serial = nextSerialNumber;
 		nextSerialNumber++;
 		
 	}
@@ -29,8 +29,8 @@ public class BankNote implements Valuable {
 	 * Get the serial number of the bank note.
 	 * @return serial number of the bank note.
 	 */
-	public long getSerialNumber() {
-		return this.serialNumber;
+	public long getSerial() {
+		return this.serial;
 	}
 	
 	/**
@@ -60,8 +60,8 @@ public class BankNote implements Valuable {
 			return false;
 		if (obj.getClass() != this.getClass())
 			return false;
-		Coin other = (Coin) obj;
-		if ((this.currency  == other.getCurrency()) && 
+		BankNote other = (BankNote) obj;
+		if ((this.currency.equalsIgnoreCase(other.getCurrency())) && 
 				(this.value == other.getValue()))
 			return true;
 		return false;
@@ -72,6 +72,6 @@ public class BankNote implements Valuable {
 	 */
 	@Override
 	public String toString() {
-		return this.value + "-" + this.currency + " note" + " ["+ this.serialNumber+"]";
+		return this.value + "-" + this.currency + " note" + " ["+ this.serial+"]";
 	}
 }

@@ -56,7 +56,7 @@ public class PurseTest {
     public void testInsert()
     {
         Purse purse = new Purse(3);
-        	Valuable coin1 = makeCoin(5);
+        Valuable coin1 = makeCoin(5);
         Valuable coin2 = makeCoin(10);
         Valuable coin3 = makeCoin(1);
         assertTrue( purse.insert(coin1));
@@ -122,13 +122,13 @@ public class PurseTest {
 		double [] values = {1, 20, 0.5, 10}; // values of coins we will insert
 		
 		for(double value : values) {
-			Valuable val = makeCoin(value);
-			assertTrue(purse.insert(val));
+			Valuable coin = makeCoin(value);
+			assertTrue(purse.insert(coin));
 			assertEquals(value,  purse.getBalance(), TOL);
 			Valuable [] result = purse.withdraw(value);
 			assertTrue( result != null );
 			assertEquals( 1, result.length );
-			assertSame(  val, result[0] ); // should be same object
+			assertSame(  coin, result[0] ); // should be same object
 			assertEquals( 0, purse.getBalance(), TOL );
 		}
 	}
@@ -138,12 +138,12 @@ public class PurseTest {
 	@Test(timeout=1000)
 	public void testMultiWithdraw() {
 		Purse purse = new Purse(10);
-		Valuable[] val = { makeCoin(5.0), makeCoin(10.0), makeCoin(1.0), makeCoin(5.0) };
+		Valuable[] coins = { makeCoin(5.0), makeCoin(10.0), makeCoin(1.0), makeCoin(5.0) };
 		// insert them all
-		for(Valuable coin: val) assertTrue( purse.insert(coin) );
+		for(Valuable coin: coins) assertTrue( purse.insert(coin) );
 		
-		double amount1 = val[1].getValue() + val[3].getValue();
-		double amount2 = val[0].getValue() + val[2].getValue();
+		double amount1 = coins[1].getValue() + coins[3].getValue();
+		double amount2 = coins[0].getValue() + coins[2].getValue();
 		assertEquals(amount1+amount2, purse.getBalance(), TOL );
 		
 		Valuable [] wd1 = purse.withdraw(amount1);
@@ -163,13 +163,13 @@ public class PurseTest {
 		Purse purse = new Purse(10);
 		// Coins we want to insert and then withdraw.
 		// Use values such that greedy will succeed, but not monotonic
-		List<Valuable> val = Arrays.asList(
+		List<Valuable> coins = Arrays.asList(
 				makeCoin(1.0), makeCoin(0.5), makeCoin(10.0), makeCoin(0.25), makeCoin(5.0)
 				);
 		// num = number of coins to insert and then withdraw
-		for(int num=1; num <= val.size(); num++) {
+		for(int num=1; num <= coins.size(); num++) {
 			double amount = 0.0;
-			List<Valuable> subList = val.subList(0, num);
+			List<Valuable> subList = coins.subList(0, num);
 			for(Valuable c: subList) {
 				purse.insert(c);
 				amount += c.getValue();
@@ -203,15 +203,14 @@ public class PurseTest {
 	
 	/**
 	 * Sum the value of some coins.
-	 * @param val array of coins
+	 * @param wd1 array of coins
 	 * @return sum of values of the coins
 	 */
-	private double sum(Valuable[] val)  {
-		if (val == null) return 0.0;
+	private double sum(Valuable[] wd1)  {
+		if (wd1 == null) return 0.0;
 		double sum = 0;
-		for(Valuable c: val) if (c != null) sum += c.getValue();
+		for(Valuable c: wd1) if (c != null) sum += c.getValue();
 		return sum;
 	}
 }
-
 
